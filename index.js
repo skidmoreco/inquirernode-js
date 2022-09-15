@@ -2,11 +2,10 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-const generateReadMe = ({ title, description, license, github }) =>
+const generateMarkdown = require('./utils/generateMarkdown')
   
 // TODO: Create an array of questions for user input
-inquirer
-    .prompt([
+const questions = [
         {
             type: 'input',
             name: 'title',
@@ -18,9 +17,30 @@ inquirer
             message: 'Give a description of your project',
           },
           {
+             type: 'input',
+             name: 'license',
+             message: 'What type of License do you want to use?',
+             choices: ['Apache', 'Boost', 'BSD', 'MIT']
+          },
+          {
             type: 'input',
-            name: 'license',
-            Selection: 'What type of License do you want to use?',
+            name: 'installation',
+            message: 'Installation instructions',
+          },
+          {
+            type: 'input',
+            name: 'usage',
+            message: 'Usage Information',
+          },
+          {
+            type: 'input',
+            name: 'contributors',
+            message: 'Contributor Guidelines?',
+          },
+          {
+            type: 'input',
+            name: 'tests',
+            message: 'Tests?',
           },
           {
             type: 'input',
@@ -29,23 +49,19 @@ inquirer
           },
           {
             type: 'input',
-            name: 'linkedin',
-            message: 'Enter your LinkedIn URL.',
+            name: 'email',
+            message: 'What is your email?',
           },
-        
-    ])
-    .then((answers) => {
-      const htmlPageContent = generateReadMe(answers);
-    
-      fs.writeFile('readme.md', htmlPageContent, (err) =>
-        err ? console.log(err) : console.log('Successfully created README!')
-      );
+    ];
+    // .then((answers) => {
+    //   const htmlPageContent = generateReadMe(answers);
+    inquirer.prompt(questions).then(data => {
+      console.log(data)
+      fs.writeFile('readme.md', generateMarkdown(data), (err) => {})
     });
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {
- fs.writeFile('readme.md', htmlPageContent)
-}
+
 
 // TODO: Create a function to initialize app
 function init() {}

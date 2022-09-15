@@ -14,7 +14,53 @@ function renderLicenseSection(license) {}
 function generateMarkdown(data) {
   return `# ${data.title}
 
-`;
+## License
+
+${renderLicenseBadge(data.license)}
+
+## Description
+${data.description}
+
+## Table of Contents (Optional)
+
+If your README is long, add a table of contents to make it easy for users to find what they need.
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Credits](#credits)
+- [License](#license)
+- [Contributors](#contributors)
+- [Tests](#tests)
+- [Questions](#questions)
+
+## Installation
+
+${data.installation}
+
+## Usage
+
+${data.usage}
+
+## Credits
+
+${data.credits}
+
+## How to Contribute
+
+${data.contributors}
+
+## Tests
+
+${data.tests}
+
+## Questions
+
+<a href = "h
+<a href 
+
+## Email
+
+Go the extra mile and write tests for your application. Then provide examples on how to run them here.` 
 }
 
 module.exports = generateMarkdown;
